@@ -8,7 +8,7 @@
 
 1.1 返回格式
 ```
-##### {"message":"","data":[],"statusCode":int}
+{"message":"","data":[],"statusCode":int}
 * message：描述
 * data   ：数据
 * statusCode：      
