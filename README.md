@@ -268,5 +268,7 @@ Demo:
     GET http://00.000.0.000:19585/version
 Response Body:
     {"message":"","data":[],"statusCode":int}
-    data:版本信息
+    data:
+         "character" 1. default：默认 2. exchange：交易所
+         "version" 版本
 ```
