@@ -235,7 +235,7 @@ Response Body:
         "type":"-"//"-" 是 转出 ，"+" 是 转入
 ```
 
-##### 1.9 通过地址查询事务内存池
+##### 2.0 通过地址查询事务内存池
 ```
 Function:getPoolAddress
 GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
@@ -258,7 +258,7 @@ Response Body:
        "datatime":"2019-07-24 09:32:43",//区块时间
        "height":0//区块高度
 ```
-##### 2.0 获取节点版本信息
+##### 2.1 获取节点版本信息
 ```
 Function:version
 GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
@@ -271,4 +271,26 @@ Response Body:
     data:
          "character" 1. default：默认 2. exchange：交易所
          "version" 版本
+```
+
+##### 2.2 获取用户信息
+```
+Function:version
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/account/{account}
+Parameter:公钥哈希/地址
+Demo:
+    GET http://00.000.0.000:19585/account/1CRXnUJx9Tq4ZpNkkueeKFxCbYg1E4uTCt
+Response Body:
+    {"message":"","data":[],"statusCode":int}
+    data:
+         {
+          "publicKeyHash": "7d4d105a3fc6db71d35ed654b1b7aab73d8fa50d",//公钥哈希
+          "address": "1CRXnUJx9Tq4ZpNkkueeKFxCbYg1E4uTCt",//地址
+          "nonce": 1,//序号
+          "balance": "1.0E9 WDC",//余额
+          "incubateCost": "0.0 WDC",//孵化本金
+          "mortgage": "0.0 WDC",//抵押数
+          "votes": "0.0 WDC"//投票数（未衰减）
+        }
 ```
