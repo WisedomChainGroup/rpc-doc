@@ -156,7 +156,7 @@ Response Body:
     	String from;  发起者公钥16进制字符串
     	long gas_price; 事务手续费单价
     	long amount; 金额
-    	String payload; payload数据
+    	String payload; payload数据(存证事务：UTF-8编码、其余事务：十六进制字符串) 
     	String signature; 签名16进制字符串
     	String to;  接受者公钥哈希16进制字符串
 ```
@@ -179,7 +179,7 @@ Response Body:
       "from": "0000000000000000000000000000000000000000000000000000000000000000", // 发送者的公钥， 用于验证签名
       "gasPrice": 0, // gasPrice 用于计算手续费
       "amount": 2000000000, // 交易数量，单位是 brain
-      "payload": null, // payload 用于数据存证，一般填null
+      "payload": null, // payload 用于数据存证，一般填null(存证事务：UTF-8编码，其余事务：十六进制字符串) 
       "to": "08f74cb61f41f692011a5e66e3c038969eb0ec75", // 接收者的地址
       "signature": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", // 签名
       "blockHash": "e2ccac56f58adb3f2f77edd96645931fac93dd058e7da21421d95f2ac9cc44ac", // 事务所在区块的哈希
@@ -209,7 +209,7 @@ Response Body:
         String from;  发起者公钥16进制字符串
         long gas_price; 事务手续费单价
         long amount; 金额
-        String payload; payload数据
+        String payload; payload数据(存证事务：UTF-8编码，其余事务：十六进制字符串) 
         String signature; 签名16进制字符串
         String to;  接受者公钥哈希16进制字符串
 ```
