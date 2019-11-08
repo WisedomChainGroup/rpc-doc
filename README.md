@@ -221,7 +221,7 @@ GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Request URL: http://00.000.0.000:19585/getTxrecordFromAddress
 Parameter：address
 Demo:
-    GET http://192.168.0.103:19585/getTxrecordFromAddress?address=1xxxxxxxxxxxxxxxxxx
+    GET http://000.000.00.000:19585/getTxrecordFromAddress?address=1xxxxxxxxxxxxxxxxxx
 Response Body:
     {"message":"","data":[],"statusCode":int}
     data:
@@ -233,6 +233,43 @@ Response Body:
         "block_hash":"f672350016ca08243c27b28824ec0b4eb2cc21014db9e7461a4bc7fe4f823e95",//区块哈希
         "datetime":"2019-07-24 00:29:15",//区块时间
         "type":"-"//"-" 是 转出 ，"+" 是 转入
+```
+1.10 获取节点的信息
+```
+Function:status
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/peers/status
+Parameter：address
+Demo:
+    GET http://000.000.00.000:19585/peers/status
+Response Body:
+    {
+    "message": "SUCCESS",
+    "data": {
+        "trusted": [],
+        "bootstraps": [
+            "wisdom://000000000000000000000000000000000000000000000000000000000000000@000.000.00.000:9585"
+        ],//自己节点的信任节点
+        "blockList": [],
+        "peers": [
+            {
+                "wisdom://0000000000000000000000000000000000000000000000000000000000000000@000.00.00.000:9585": 64 //邻居节点1的私钥@节点：节点得分
+            },
+            {
+                "wisdom://0000000000000000000000000000000000000000000000000000000000000000@000.00.00.000:9585": 63 ////邻居节点2的私钥@节点：节点得分
+            },
+            {
+                "wisdom://0000000000000000000000000000000000000000000000000000000000000000@000.00.00.000:9585": 63 ////邻居节点3的私钥@节点：节点得分
+            },
+            ......
+        ],
+        "self": "wisdom://0000000000000000000000000000000000000000000000000000000000000000@000.000.0.00:9585",//自己的私钥@节点
+        "p2pMode": "grpc",//p2p模式
+        "maxBlocksPerTransfer": 2048,//最大一次性传输的区块数量
+        "allowFork": true,//是否允许分叉
+        "enableDiscovery": true //是否开启节点发现
+    },
+    "code": 2000
 ```
 
 ##### 2.0 通过地址查询事务内存池
