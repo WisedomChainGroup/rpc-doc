@@ -309,15 +309,15 @@ Response Body:
     {"message":"","data":[],"statusCode":int}
     data:
          {
-            "code": "XXXX",
-            "offering": 100000000,
-            "totalamount": 100000000,
-            "createuser": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "owner": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "allowincrease": 1,
-            "info": "",
-            "createuserAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "ownerAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            "code": "XXXX",//资产代码
+            "offering": 100000000,//期初发行额度
+            "totalamount": 100000000,//发行总量
+            "createuser": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",//规则创建者的公钥
+            "owner": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",//规则所有者的公钥
+            "allowincrease": 1,//是否允许增发 1表示允许，0表示不允许
+            "info": "",//详情
+            "createuserAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",//规则创建者的地址
+            "ownerAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"//规则所有者的地址
         }
 ```
 
@@ -365,15 +365,15 @@ Response Body:
     {"message":"","data":[],"statusCode":int}
     data:
          {
-          "code": "XXXX",
-            "offering": 100000000,
-            "totalamount": 100000000,
-            "createuser": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "owner": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "allowincrease": 1,
-            "info": "",
-            "createuserAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "ownerAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            "code": "XXXX",//资产代码
+	    "offering": 100000000,//期初发行额度
+	    "totalamount": 100000000,//发行总量
+	    "createuser": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",//规则创建者的公钥
+	    "owner": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",//规则所有者的公钥
+	    "allowincrease": 1,//是否允许增发 1表示允许，0表示不允许
+	    "info": "",//详情
+	    "createuserAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",//规则创建者的地址
+	    "ownerAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"//规则所有者的地址
         }
 ```
 
