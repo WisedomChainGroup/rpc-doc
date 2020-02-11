@@ -45,6 +45,8 @@
 
 ### 二、节点RPC
 
+### 1） 基本RPC
+
 ##### 1.0 获取Nonce
 ```
 Function:sendNonce
@@ -156,7 +158,7 @@ Response Body:
     	String from;  发起者公钥16进制字符串
     	long gas_price; 事务手续费单价
     	long amount; 金额
-    	String payload; payload数据(存证事务：UTF-8编码、其余事务：十六进制字符串) 
+    	String payload; payload数据(存证事务：UTF-8编码、其余事务：十六进制字符串)
     	String signature; 签名16进制字符串
     	String to;  接受者公钥哈希16进制字符串
 ```
@@ -179,7 +181,7 @@ Response Body:
       "from": "0000000000000000000000000000000000000000000000000000000000000000", // 发送者的公钥， 用于验证签名
       "gasPrice": 0, // gasPrice 用于计算手续费
       "amount": 2000000000, // 交易数量，单位是 brain
-      "payload": null, // payload 用于数据存证，一般填null(存证事务：UTF-8编码，其余事务：十六进制字符串) 
+      "payload": null, // payload(存证事务：UTF-8编码、其余事务：十六进制字符串) 用于数据存证，一般填null
       "to": "08f74cb61f41f692011a5e66e3c038969eb0ec75", // 接收者的地址
       "signature": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", // 签名
       "blockHash": "e2ccac56f58adb3f2f77edd96645931fac93dd058e7da21421d95f2ac9cc44ac", // 事务所在区块的哈希
@@ -209,7 +211,7 @@ Response Body:
         String from;  发起者公钥16进制字符串
         long gas_price; 事务手续费单价
         long amount; 金额
-        String payload; payload数据(存证事务：UTF-8编码，其余事务：十六进制字符串) 
+        String payload; payload数据(存证事务：UTF-8编码、其余事务：十六进制字符串)
         String signature; 签名16进制字符串
         String to;  接受者公钥哈希16进制字符串
 ```
@@ -221,7 +223,7 @@ GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Request URL: http://00.000.0.000:19585/getTxrecordFromAddress
 Parameter：address
 Demo:
-    GET http://000.000.00.000:19585/getTxrecordFromAddress?address=1xxxxxxxxxxxxxxxxxx
+    GET http://192.168.0.103:19585/getTxrecordFromAddress?address=1xxxxxxxxxxxxxxxxxx
 Response Body:
     {"message":"","data":[],"statusCode":int}
     data:
@@ -233,43 +235,6 @@ Response Body:
         "block_hash":"f672350016ca08243c27b28824ec0b4eb2cc21014db9e7461a4bc7fe4f823e95",//区块哈希
         "datetime":"2019-07-24 00:29:15",//区块时间
         "type":"-"//"-" 是 转出 ，"+" 是 转入
-```
-1.10 获取节点的信息
-```
-Function:status
-GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-Request URL: http://00.000.0.000:19585/peers/status
-Parameter：address
-Demo:
-    GET http://000.000.00.000:19585/peers/status
-Response Body:
-    {
-    "message": "SUCCESS",
-    "data": {
-        "trusted": [],
-        "bootstraps": [
-            "wisdom://000000000000000000000000000000000000000000000000000000000000000@000.000.00.000:9585"
-        ],//自己节点的信任节点
-        "blockList": [],
-        "peers": [
-            {
-                "wisdom://0000000000000000000000000000000000000000000000000000000000000000@000.00.00.000:9585": 64 //邻居节点1的私钥@节点：节点得分
-            },
-            {
-                "wisdom://0000000000000000000000000000000000000000000000000000000000000000@000.00.00.000:9585": 63 ////邻居节点2的私钥@节点：节点得分
-            },
-            {
-                "wisdom://0000000000000000000000000000000000000000000000000000000000000000@000.00.00.000:9585": 63 ////邻居节点3的私钥@节点：节点得分
-            },
-            ......
-        ],
-        "self": "wisdom://0000000000000000000000000000000000000000000000000000000000000000@000.000.0.00:9585",//自己的私钥@节点
-        "p2pMode": "grpc",//p2p模式
-        "maxBlocksPerTransfer": 2048,//最大一次性传输的区块数量
-        "allowFork": true,//是否允许分叉
-        "enableDiscovery": true //是否开启节点发现
-    },
-    "code": 2000
 ```
 
 ##### 2.0 通过地址查询事务内存池
@@ -309,10 +274,9 @@ Response Body:
          "character" 1. default：默认 2. exchange：交易所
          "version" 版本
 ```
-
 ##### 2.2 获取用户信息
 ```
-Function:version
+Function:account
 GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Request URL: http://00.000.0.000:19585/account/{account}
 Parameter:公钥哈希/地址
@@ -331,3 +295,120 @@ Response Body:
           "votes": "0.0 WDC"//投票数（未衰减）
         }
 ```
+#### 2）智能合约相关RPC
+
+##### 1.0 查询合约的详细信息
+```
+Function:ParseContractTx
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/ParseContractTx
+Parameter:txhash（事务哈希）
+Demo:
+    GET http://00.000.0.000:19585/ParseContractTx/?txhash=xxxxxxxxxxxx
+Response Body:
+    {"message":"","data":[],"statusCode":int}
+    data:
+         {
+            "code": "XXXX",
+            "offering": 100000000,
+            "totalamount": 100000000,
+            "createuser": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "owner": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "allowincrease": 1,
+            "info": "",
+            "createuserAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "ownerAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+```
+
+##### 1.1 查询合约的RLP编码
+```
+Function:RLPContractTx
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/RLPContractTx
+Parameter:txhash（事务哈希）
+Demo:
+    GET http://00.000.0.000:19585/RLPContractTx/?txhash=xxxxxxxxxxxx
+Response Body:
+    {"message":"","data":[],"statusCode":int}
+    data:
+         {
+          ********************************************（RLP编码）
+        }
+```
+
+##### 1.2 查询相应账户的指定资产余额
+```
+Function:TokenBalance
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/TokenBalance
+Parameter:address（地址）、code（资产编码）
+Demo:
+    GET http://00.000.0.000:19585/TokenBalance/?address=xxxxxxxxxxxx&code=xxxxxxxxxxxx
+Response Body:
+    {"message":"","data":[],"statusCode":int}
+    data:
+         {
+          balance
+        }
+```
+
+##### 1.3 通过合约地址查询资产定义的详细信息
+```
+Function:ParseAssetAddress
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/ParseAssetAddress
+Parameter:address（合约地址）
+Demo:
+    GET http://00.000.0.000:19585/ParseAssetAddress/?address=xxxxxxxxxxxx
+Response Body:
+    {"message":"","data":[],"statusCode":int}
+    data:
+         {
+          "code": "XXXX",
+            "offering": 100000000,
+            "totalamount": 100000000,
+            "createuser": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "owner": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "allowincrease": 1,
+            "info": "",
+            "createuserAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "ownerAddress": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+```
+
+##### 1.4 查询地址类型
+```
+Function:AddressType
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/AddressType
+Parameter:address（合约地址）
+Demo:
+    GET http://00.000.0.000:19585/AddressType/?address=xxxxxxxxxxxx
+Response Body:
+    {"message":"","data":[],"statusCode":int}
+    data:
+         {
+            1//资产定义
+            2//多签
+            3//锁定时间哈希
+            4//锁定高度哈希
+        }
+```
+
+##### 1.5 查询多种资产约（针对普通地址、多签地址）
+```
+Function:TokenListBalance
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/TokenListBalance
+Parameter:address（String合约地址）,codes（用“，”拼接的code）
+Demo:
+    GET http://00.000.0.000:19585/TokenListBalance/?address=xxxxxxxxxxxx&codeList=xxxxxxxxxxxxxxxxxxxxx
+Response Body:
+    {"message":"","data":[],"statusCode":int}
+    data:
+         {
+          "code":balance
+        }
+```
+
