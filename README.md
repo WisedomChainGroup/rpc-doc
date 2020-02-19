@@ -141,7 +141,7 @@ Response Body:
 Function:getTransactionHeight
 POST/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Request URL: http://00.000.0.000:19585/getTransactionHeight
-Parameter：height(十六进制字符串)
+Parameter：height(int)
 Demo:
     POST http://00.000.00.000:19585/getTransactionHeight
     POST data:
