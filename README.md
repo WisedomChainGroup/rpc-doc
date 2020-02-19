@@ -147,20 +147,22 @@ Demo:
     POST data:
         height=100
 Response Body:
-    {"message":"","data":[],"statusCode":int}
-    data:
-        String block_hash; 区块哈希16进制字符串
-    	long height; 区块高度
-    	int version; 版本号
-    	String tx_hash; 事务哈希16进制字符串
-    	int type;  事务类型
-    	long nonce;nonce
-    	String from;  发起者公钥16进制字符串
-    	long gas_price; 事务手续费单价
-    	long amount; 金额
-    	String payload; payload数据(存证事务：UTF-8编码、其余事务：十六进制字符串)
-    	String signature; 签名16进制字符串
-    	String to;  接受者公钥哈希16进制字符串
+   [ {
+  "transactionHash" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "version" : 1,
+  "type" : 1,
+  "nonce" : 8,
+  "from" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "gasPrice" : 4,
+  "amount" : 100000000,
+  "payload" : "",
+  "to" : "xxxxxxxxxxxxxxxxxxxxx",
+  "signature" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "blockHash" : "xxxxxxxxxxxxxxxxxxxxx",
+  "fee" : 200000,
+  "blockHeight" : xxxxxxx
+} ]
+*此接口默认查询的是转账事务，如有异常直接报400 
 ```
 ##### 1.7 通过事务哈希获取事务
 
@@ -200,23 +202,25 @@ Demo:
     POST data:
         blockhash=00000000000000000000000000000000000000000000000000000000000000000
 Response Body:
-    {"message":"","data":[],"statusCode":int}
-    data:
-        String block_hash; 区块哈希16进制字符串
-        long height; 区块高度
-        int version; 版本号
-        String tx_hash; 事务哈希16进制字符串
-        int type;  事务类型
-        long nonce;nonce
-        String from;  发起者公钥16进制字符串
-        long gas_price; 事务手续费单价
-        long amount; 金额
-        String payload; payload数据(存证事务：UTF-8编码、其余事务：十六进制字符串)
-        String signature; 签名16进制字符串
-        String to;  接受者公钥哈希16进制字符串
+    [ {
+	  "transactionHash" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+	  "version" : 1,
+	  "type" : 1,
+	  "nonce" : 8,
+	  "from" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+	  "gasPrice" : 4,
+	  "amount" : 100000000,
+	  "payload" : "",
+	  "to" : "xxxxxxxxxxxxxxxxxx",
+	  "signature" :"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+	  "blockHash" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+	  "fee" : 200000,
+	  "blockHeight" : xxxxxx
+	} ]
+*此接口默认查询的是转账事务，如有异常直接报400 
 ```
 
-##### 1.9 通过地址查询与地址相关的转入转出事务
+##### 1.9 通过地址查询与地址相关的转入转出事务(已禁用)
 ```
 Function:getTxrecordFromAddress
 GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
