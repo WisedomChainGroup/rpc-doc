@@ -135,7 +135,7 @@ Response Body:
     {"message":"","data":[],"statusCode":int}
     data: status(int)
 ```
-##### 1.6 根据区块高度获取事务列表
+##### 1.6 根据区块高度获取事务列表（V0.0.9有修改）
 
 ```
 Function:getTransactionHeight
@@ -190,7 +190,7 @@ Response Body:
       "fee": 0,  // 手续费
       "blockHeight": 13026 // 事务所在区块高度
 ```
-##### 1.8 通过区块哈希获取事务列表
+##### 1.8 通过区块哈希获取事务列表（V0.0.9有修改）
 
 ```
 Function:getTransactionBlcok
@@ -220,7 +220,7 @@ Response Body:
 *此接口默认查询的是转账事务，如有异常直接报400 
 ```
 
-##### 1.9 通过地址查询与地址相关的转入转出事务(已禁用)
+##### 1.9 通过地址查询与地址相关的转入转出事务(V0.0.9有修改已禁用)
 ```
 Function:getTxrecordFromAddress
 GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
