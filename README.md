@@ -403,7 +403,7 @@ Response Body:
 ##### 1.5 查询多种资产约（针对普通地址、多签地址）
 ```
 Function:TokenListBalance
-GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+POST/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Request URL: http://00.000.0.000:19585/TokenListBalance
 Parameter:address（String地址）,codes（用“，”拼接的code）
 Demo:
