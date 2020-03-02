@@ -407,7 +407,7 @@ POST/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Request URL: http://00.000.0.000:19585/TokenListBalance
 Parameter:address（String地址）,codes（用“，”拼接的code）
 Demo:
-    POST http://00.000.0.000:19585/TokenListBalance/?address=xxxxxxxxxxxx&codeList=xxxxxxxxxxxxxxxxxxxxx
+    POST http://00.000.0.000:19585/TokenListBalance/?address=xxxxxxxxxxxx&codes=xxxxxxxxxxxxxxxxxxxxx
 Response Body:
     {"message":"","data":[],"statusCode":int}
     data:
