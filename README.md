@@ -299,6 +299,48 @@ Response Body:
           "votes": "0.0 WDC"//投票数（未衰减）
         }
 ```
+
+##### 2.3 通过区块哈希、高度获取区块详情
+```
+Function:account
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/block/{block}
+Parameter:区块高度/区块哈希
+Demo:
+    GET http://00.000.0.000:19585/block/da4254a981cd6836c238d8037011e7b46bd33d4d5f8ffc57cc1f7eb34c753800
+Response Body:
+    {
+    "blockSize": 131454,//区块大小
+    "blockHash": "da4254a981cd6836c238d8037011e7b46bd33d4d5f8ffc57cc1f7eb34c753800",//区块哈希
+    "nVersion": 0,//版本
+    "hashPrevBlock"://父区块 "fdb6e09ba62d95a659ea8e0dc482a45b73492fe2e8536118ed9d99f4969bfdcc",
+    "hashMerkleRoot"://梅克尔根 "16c48ac542a0ff5371eb8dc45ed1c7bb73a822cb002eb1b31aabbdfeeb37a903",
+    "hashMerkleState"://梅克尔状态 "ea00c4de2445d0b05ad016dc08b2d9cd98e2babf54a38677112255b07c013bdc",
+    "hashMerkleIncubate"://孵化梅克尔状态 "0000000000000000000000000000000000000000000000000000000000000000",
+    "nHeight": 1808666,//高度
+    "nTime": 1587622316,//时间
+    "nBits": "000031c5e93c30fc2f3bb425a53bb3a2a32f4655dbaf03a216d85e40e6ccfeae",//目标难度
+    "nNonce": "191ede9b61a79133b34513a03f18cf5f0de0e04fa1c90ab8cb79b951521317bd",//序号
+    "blockNotice": null,//备注
+    "body": [//区块里的事务
+    {
+      "transactionHash"://事务哈希 "588359a4ec2e075b8ebac68a898ea4f0dd6090790b4e5ef199bd31ba53a8252a",
+      "version": 1,//版本
+      "type": 0,//类型
+      "nonce": 38000,//序号
+      "from": "0000000000000000000000000000000000000000000000000000000000000000",//事务构建者
+      "gasPrice": 0,//手续费单价
+      "amount": 666666666,//金额
+      "payload": "",
+      "to": "c8d332229b604872e8ebc85d419b8761855305d5",//接收者公钥哈希
+      "signature": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",//签名
+      "blockHash": "da4254a981cd6836c238d8037011e7b46bd33d4d5f8ffc57cc1f7eb34c753800",//区块哈希
+      "fee": 0,
+      "blockHeight": 1808666//区块高度
+    }
+  ]
+}
+```
 #### 2）智能合约相关RPC
 
 ##### 1.0 查询合约的详细信息
