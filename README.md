@@ -302,7 +302,7 @@ Response Body:
 
 ##### 2.3 通过区块哈希、高度获取区块详情
 ```
-Function:account
+Function:block
 GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Request URL: http://00.000.0.000:19585/block/{block}
 Parameter:区块高度/区块哈希
