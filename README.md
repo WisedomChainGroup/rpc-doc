@@ -341,6 +341,52 @@ Response Body:
   ]
 }
 ```
+
+##### 2.4 查询事务列表
+```
+Function:internal/getTxrecordFromAddress
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/block/{block}
+Parameter:
+      from(String)，//发送者的公钥（必填）
+      to(String)， //接收者的公钥哈希（必填，但from和to至少有一个或全部）
+      offset(int), //跳过多少个数据开始显示（非必填）
+      limit(int), //单页显示的数目（非必填）
+      type(int) //事务类型（非必填，看个人需求）
+Demo:
+    GET http://00.000.0.000:19585//internal/getTxrecordFromAddress?from=0000000000000000000000000000000000000000000000000000000000000000&to=000000000000000000000000&type=1
+Response Body://对应的事务
+    [ {
+  "transactionHash" : "3fb0bd9930a40be9057286c04e36d01bc73c32aa30bbbb36cf6e31bb53f7250a",//事务哈希
+  "version" : 1,//版本
+  "type" : 2,//事务类型
+  "nonce" : 18,//序号
+  "from" : "960199e757bc6cd5817c85d9b195f45d329035f77345525c328e4e3fa26a080c",//发起者
+  "gasPrice" : 10,//手续费单价
+  "amount" : 20000000000,//金额
+  "payload" : "",
+  "to" : "35496d2e44382a04f3a88ce1d6e4d3e72fd4ef82",//接收方
+  "signature" : "41d96ff1321b50a924b208a6a873ca208a0e74e1c3749d98aeeaa41ac4db55593e120ef1b64d7b31f5fe4ec57dcc8d4b8e76924f24af9c002b6e98a7f4dc0d0a",//签名
+  "blockHash" : "7457534db6623b3089407067388f8ce4d9fd2908305029f3b7b0e1964c5a9afc",//区块哈希
+  "fee" : 200000,//手续费
+  "blockHeight" : 1345022//区块高度
+}, {
+  "transactionHash" : "f702818d745b2f536fe979c9fdc6755743b05c3c23b60017667bda8938f50263",
+  "version" : 1,
+  "type" : 2,
+  "nonce" : 198,
+  "from" : "6c4b9809fcf3c324dc412c8cfae1408138d6474068aea8b4dcbd80800e3f8ae9",
+  "gasPrice" : 10,
+  "amount" : 27300000000000,
+  "payload" : "",
+  "to" : "35496d2e44382a04f3a88ce1d6e4d3e72fd4ef82",
+  "signature" : "9c1d52840419f7b41577759e98b9837347a5459d9af1b3f36d3675ba2de06bccbdb23fed5d4f1e0e0465290f9603a8beaca3baa5158bd07803cd7735f5fb6c0f",
+  "blockHash" : "fede050c17540ca950cd6dddbc9c2a0dc54f9004336664aeff626a5153d736ef",
+  "fee" : 200000,
+  "blockHeight" : 1360180
+} ]
+}
+```
 #### 2）智能合约相关RPC
 
 ##### 1.0 查询合约的详细信息
