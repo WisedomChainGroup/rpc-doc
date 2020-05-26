@@ -387,6 +387,18 @@ Response Body://对应的事务
 } ]
 }
 ```
+
+##### 2.5 查看事务是否上链
+```
+Function:transactionConfirmed
+GET/HTTP/1.1/Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Request URL: http://00.000.0.000:19585/transactionConfirmed
+Parameter:
+Demo:
+    GET http://00.000.0.000:19585/transactionConfirmed?txHash=00000000000000000000000000000
+Response Body:
+    {"message":"","data":[],"statusCode":int}
+```
 #### 2）智能合约相关RPC
 
 ##### 1.0 查询合约的详细信息
